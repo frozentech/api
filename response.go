@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"net/http"
 
 	"github.com/aws/aws-lambda-go/events"
 )
@@ -32,6 +33,6 @@ func (r *Response) Stat(i int) error {
 	r.StatusCode = i
 
 	return r.Output(map[string]string{
-		"message": StatusMessage[i],
+		"message": http.StatusText(i),
 	})
 }
